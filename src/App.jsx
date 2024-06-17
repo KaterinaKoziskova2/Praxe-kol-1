@@ -1,29 +1,24 @@
-import './App.css';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Login from './components/Login';
+import BlogList from './components/BlogList';
+import BlogPost from './components/BlogPost';
+import CreatePost from './components/CreatePost';
+import { AuthProvider } from './contexts/AuthContext';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
-    </div>
+    <AuthProvider>
+      <Header />
+      <Routes>
+        <Route path="/" element={<BlogList />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/post/:id" element={<BlogPost />} />
+        <Route path="/create" element={<CreatePost />} />
+      </Routes>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
